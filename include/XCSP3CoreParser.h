@@ -58,9 +58,13 @@ namespace XCSP3Core {
 
 
         int parse(istream &in);
+        int parse(FILE* in);
 
 
         int parse(const char *filename);
+
+
+
 
 
     protected:
@@ -86,6 +90,7 @@ namespace XCSP3Core {
         static void startElement(void *parser, const xmlChar *name, const xmlChar **attr);
 
         static void endElement(void *parser, const xmlChar *name);
+
     };
 
 }
