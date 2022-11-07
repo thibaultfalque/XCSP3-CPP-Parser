@@ -63,11 +63,6 @@ include_directories(
 )
 
 add_library(${LIBRARY_NAME} STATIC ${LIB_SOURCES} ${LIB_HEADERS})
-add_library(${LIBRARY_NAME_DYNAMIC} SHARED ${LIB_SOURCES} ${LIB_HEADERS})
-#add_library(${LIBRARY_NAME} SHARED ${LIB_SOURCES} ${LIB_HEADERS})
-
-#include_directories(C:\\Users\\falque\\libxml2\\include\\libxml2)
-#include_directories(${Iconv_INCLUDE_DIR})
 target_link_libraries(${LIBRARY_NAME} ${LIBXML2_LIBRARIES})
 
 set_target_properties(${LIBRARY_NAME} PROPERTIES
