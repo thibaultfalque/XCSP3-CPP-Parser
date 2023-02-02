@@ -60,6 +60,10 @@ namespace XCSP3Core {
         int parse(istream &in);
         int parse(FILE* in);
 
+        inline bool isOptimization(){
+            return this->cspParser.manager->getInstanceType()==InstanceType::COP;
+        }
+
 
         int parse(const char *filename);
 
