@@ -32,7 +32,7 @@
 #include <map>
 #include<algorithm>
 #include<cassert>
-
+#include <string>
 namespace XCSP3Core {
 
 

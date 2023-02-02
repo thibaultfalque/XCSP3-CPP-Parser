@@ -13,12 +13,11 @@ set(Xcsp3Parser_VERSION_MINOR 0)
 set(Xcsp3Parser_VERSION_PATCH 0)
 set(VERSION ${Xcsp3Parser_VERSION_MAJOR}.${Xcsp3Parser_VERSION_MINOR}.${Xcsp3Parser_VERSION_PATCH})
 
-#configure_file(
-#        "${PROJECT_SOURCE_DIR}/include/Xcsp3ParserConfig.h.in"
-#        "${PROJECT_BINARY_DIR}/include/Xcsp3ParserConfig.h"
-#)
+#find_package(Iconv REQUIRED)
+
 find_package(LibXml2 REQUIRED)
 include_directories(${LIBXML2_INCLUDE_DIR})
+message(STATUS ${LIBXML2_LIBRARIES})
 
 set(LIBRARY_NAME xcsp3parser)
 set(LIBRARY_NAME_DYNAMIC xcsp3parser_dynamic)
@@ -64,8 +63,6 @@ include_directories(
 )
 
 add_library(${LIBRARY_NAME} STATIC ${LIB_SOURCES} ${LIB_HEADERS})
-add_library(${LIBRARY_NAME_DYNAMIC} SHARED ${LIB_SOURCES} ${LIB_HEADERS})
-#add_library(${LIBRARY_NAME} SHARED ${LIB_SOURCES} ${LIB_HEADERS})
 target_link_libraries(${LIBRARY_NAME} ${LIBXML2_LIBRARIES})
 
 set_target_properties(${LIBRARY_NAME} PROPERTIES
