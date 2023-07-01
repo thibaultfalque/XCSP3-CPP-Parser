@@ -44,12 +44,22 @@ set(
     xcsp3parser_INSTALL_CMAKEDIR "${CMAKE_INSTALL_PREFIX}/share/${package}"
     CACHE PATH "CMake package config location relative to the install prefix"
 )
+set(
+    xcsp3-cpp-parser_INSTALL_CMAKEDIR "${CMAKE_INSTALL_PREFIX}/share/${package}"
+    CACHE PATH "CMake package config location relative to the install prefix"
+)
 else ()
 set(
     xcsp3parser_INSTALL_CMAKEDIR "${CMAKE_INSTALL_LIBDIR}/cmake/${package}"
     CACHE PATH "CMake package config location relative to the install prefix"
 )
+set(
+    xcsp3-cpp-parser_INSTALL_CMAKEDIR "${CMAKE_INSTALL_LIBDIR}/cmake/${package}"
+    CACHE PATH "CMake package config location relative to the install prefix"
+)
 endif ()
+
+mark_as_advanced(xcsp3parser_INSTALL_CMAKEDIR)
 mark_as_advanced(xcsp3-cpp-parser_INSTALL_CMAKEDIR)
 
 install(
