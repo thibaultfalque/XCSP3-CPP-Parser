@@ -796,7 +796,10 @@ void XMLParser::CardinalityTagAction::beginTag(const AttributeList &attributes) 
 
     // Must be called inside a constraint
     BasicConstraintTagAction::beginTag(attributes);
-    this->parser->closed = true;
+    this->parser->closed = false;
+    if(!attributes["closed"].isNull() && attributes["closed"] == "0")
+        this->parser->closed = true;
+
     constraint = new XConstraintCardinality(this->id, this->parser->classes);
 
     // Link constraint to group
@@ -1323,18 +1326,13 @@ void XMLParser::ObjectivesTagAction::endTag() {
         objective->list.assign(this->parser->lists[0].begin(), this->parser->lists[0].end());
     if(this->parser->values.size() > 0) {
         int value;
-        for(XEntity *xe : this->parser->values) {
-            isInteger(xe, value);
-            objective->coeffs.push_back(value);
-        }
+        objective->coeffs.assign(this->parser->values.begin(), this->parser->values.end());
     } else if(objective->type != EXPRESSION_O) {
-        objective->coeffs.assign(objective->list.size(), 1);
+        objective->coeffs.assign(objective->list.size(), new XInteger("1", 1));
     }
-
     this->parser->manager->addObjective(objective);
     delete objective;
     this->parser->manager->endObjectives();
-
 }
 
 
