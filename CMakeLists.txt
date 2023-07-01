@@ -74,7 +74,10 @@ add_library(
         ${LIB_HEADERS} ${LIB_SOURCES})
         add_library(xcsp3-cpp-parser_xcsp3-cpp-parser ALIAS ${LIBRARY_NAME})
         add_library(xcsp3-cpp-parser::xcsp3-cpp-parser ALIAS ${LIBRARY_NAME})
-target_link_libraries(${LIBRARY_NAME} ${LIBXML2_LIBRARIES})
+target_link_libraries(${LIBRARY_NAME} LibXml2::LibXml2)
+if (WIN32)
+target_compile_options(${LIBRARY_NAME} PRIVATE /MT)
+endif()
 
 if(NOT BUILD_SHARED_LIBS)
   target_compile_definitions(${LIBRARY_NAME} PUBLIC XCSP3_CPP_PARSER_STATIC_DEFINE)
@@ -112,7 +115,10 @@ target_compile_features(${LIBRARY_NAME} PUBLIC cxx_std_11)
 
 set(APPLICATION_NAME samplesXcsp3)
 add_executable(${APPLICATION_NAME} ${APP_SOURCES})
-target_link_libraries(${APPLICATION_NAME} ${LIBRARY_NAME} ${LIBXML2_LIBRARIES})
+target_link_libraries(${APPLICATION_NAME} ${LIBRARY_NAME} LibXml2::LibXml2)
+if (WIN32)
+target_compile_options(samplesXcsp3 PRIVATE /MT)
+endif()
 
 # ---- Install rules ----
 
