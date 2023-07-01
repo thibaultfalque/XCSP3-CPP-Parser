@@ -1,0 +1,7 @@
+{
+  "name": "xcsp3-cpp-parser",
+  "version-semver": "1.5.0",
+  "dependencies": [
+    "libxml2"
+  ]
+}
